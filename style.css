@@ -494,3 +494,154 @@ footer .arabic {
   }
 }
 
+
+/* LUXURY FULL-SCREEN ENVELOPE */
+.envelope-screen {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 30px 20px;
+  overflow: hidden;
+  position: relative;
+  justify-content: space-evenly;
+  background:
+    radial-gradient(ellipse at center, #fffaf0 0%, #f4e7d0 72%, #dfc79f 100%);
+}
+
+.envelope-screen::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px solid #b28a45;
+  outline: 1px solid #b28a454d;
+  outline-offset: 5px;
+  pointer-events: none;
+}
+
+.envelope-screen::after {
+  content: "✧  ❈  ✧";
+  position: absolute;
+  top: 25px;
+  left: 0;
+  right: 0;
+  color: #a47b39;
+  letter-spacing: 12px;
+  font-size: 22px;
+  pointer-events: none;
+}
+
+.envelope-names {
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(44px, 8vw, 76px);
+  font-weight: 400;
+  color: #805e2e;
+}
+
+.envelope-screen .eyebrow {
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(30px, 5vw, 43px);
+  letter-spacing: .02em;
+  color: #8d6b35;
+  margin-bottom: 0;
+}
+
+.envelope-screen .small-arabic {
+  color: #805e2e;
+}
+
+.envelope-button {
+  width: min(100%, 480px);
+  padding: 15px 0;
+  position: relative;
+  z-index: 2;
+}
+
+.envelope {
+  width: 100%;
+  height: clamp(300px, 48vh, 440px);
+  overflow: visible;
+  border: 1px solid #b28a45;
+  background: linear-gradient(135deg, #f7e9cf, #e8d2ad 55%, #f8edda);
+  box-shadow:
+    0 22px 45px #6d4b2730,
+    inset 0 0 0 5px #fff7e6,
+    inset 0 0 0 6px #c5a267;
+}
+
+.envelope::before {
+  border-width: 0 0 clamp(300px, 48vh, 440px) 50%;
+  border-color: transparent transparent #e1c69b transparent;
+}
+
+.envelope::after {
+  border-width: clamp(300px, 48vh, 440px) 0 0 50%;
+  border-color: transparent transparent transparent #ead8b8;
+}
+
+.envelope-flap {
+  border-left-width: 50%;
+  border-right-width: 50%;
+  border-top-color: #d7b887;
+  filter: drop-shadow(0 4px 3px #79582b20);
+}
+
+.envelope-letter {
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(30px, 6vw, 46px);
+  color: #886a3b;
+}
+
+.wax-seal {
+  width: clamp(100px, 24vw, 130px);
+  height: clamp(100px, 24vw, 130px);
+  top: 50%;
+  border-radius: 44% 48% 45% 50%;
+  border: 5px double #d6b36d;
+  outline: 1px solid #722c3b;
+  background:
+    radial-gradient(circle at 30% 23%, #c36b70 0%, #8e303d 30%, #651b2c 68%, #42101d 100%);
+  box-shadow:
+    inset 3px 3px 7px #f6b2a34d,
+    inset -5px -7px 9px #32071380,
+    0 8px 14px #40201855;
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(35px, 8vw, 52px);
+  text-shadow: 1px 2px 1px #39101a;
+  transform: translate(-50%, -20%);
+}
+
+.open-text {
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(25px, 5vw, 36px);
+  color: #8d6b35;
+  letter-spacing: 0;
+}
+
+.intro-note {
+  font-size: 17px;
+  color: #806747;
+}
+
+@media (max-width: 480px) {
+  .envelope-screen {
+    padding: 38px 22px;
+  }
+
+  .envelope {
+    height: 43vh;
+    min-height: 280px;
+  }
+
+  .envelope::before {
+    border-width: 0 0 43vh 50%;
+  }
+
+  .envelope::after {
+    border-width: 43vh 0 0 50%;
+  }
+
+  .envelope-flap {
+    border-left-width: 50%;
+    border-right-width: 50%;
+  }
+}
