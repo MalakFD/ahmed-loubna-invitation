@@ -646,7 +646,168 @@ footer .arabic {
   }
 }
 
-/* DESIGN TEST */
+
+/* ===== AHMED & LOUBNA — LUXURY ENVELOPE ===== */
+
 .envelope-screen {
-  background: #f3e4c8 !important;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 55px 22px 35px;
+  justify-content: space-evenly;
+  gap: 12px;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 40%, #fffaf0 0%, #f3e4c8 72%, #ddc39a 100%) !important;
+  position: relative;
 }
+
+.envelope-screen::before {
+  content: "";
+  position: absolute;
+  inset: 16px;
+  border: 1px solid #b28a45;
+  outline: 1px solid #b28a454d;
+  outline-offset: 5px;
+  pointer-events: none;
+}
+
+.envelope-screen::after {
+  content: "✧  ❈  ✧";
+  position: absolute;
+  top: 22px;
+  color: #a47b39;
+  font-size: 24px;
+  letter-spacing: 10px;
+  pointer-events: none;
+}
+
+.envelope-screen .eyebrow {
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(30px, 6vw, 46px);
+  letter-spacing: 0;
+  color: #88652f;
+  margin: 12px 0 0;
+}
+
+.envelope-names {
+  font-family: "Great Vibes", cursive;
+  font-weight: 400;
+  font-size: clamp(42px, 9vw, 72px);
+  color: #805e2e;
+  margin: 0;
+}
+
+.envelope-names span {
+  color: #ad8543;
+}
+
+.envelope-screen .small-arabic {
+  font-size: 25px;
+  color: #805e2e;
+  margin: 0;
+}
+
+.envelope-button {
+  width: min(100%, 470px);
+  padding: 15px 0;
+  position: relative;
+  z-index: 2;
+}
+
+.envelope {
+  width: 100%;
+  height: clamp(290px, 43vh, 420px);
+  overflow: hidden;
+  position: relative;
+  border: 1px solid #b28a45;
+  background: linear-gradient(145deg, #f8edd9, #e6cda5 52%, #f6e8cf);
+  box-shadow:
+    0 22px 45px #6d4b2730,
+    inset 0 0 0 5px #fff7e6,
+    inset 0 0 0 6px #c5a267;
+}
+
+.envelope::before {
+  border-width: 0 0 clamp(290px, 43vh, 420px) 50%;
+  border-color: transparent transparent #ddc49b transparent;
+}
+
+.envelope::after {
+  border-width: clamp(290px, 43vh, 420px) 0 0 50%;
+  border-color: transparent transparent transparent #ead8b8;
+}
+
+.envelope-flap {
+  border-left-width: 50%;
+  border-right-width: 50%;
+  border-top-color: #d2b080;
+  filter: drop-shadow(0 4px 3px #79582b35);
+  transition: transform .9s ease;
+}
+
+.envelope-letter {
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(30px, 6vw, 45px);
+  color: #88652f;
+}
+
+.wax-seal {
+  width: clamp(95px, 25vw, 125px);
+  height: clamp(95px, 25vw, 125px);
+  top: 50%;
+  border-radius: 43% 48% 44% 50%;
+  border: 5px double #d6b36d;
+  outline: 1px solid #722c3b;
+  background:
+    radial-gradient(circle at 28% 22%, #c87578 0%, #a3414b 22%, #772333 62%, #48111f 100%);
+  box-shadow:
+    inset 3px 3px 8px #f6b2a34d,
+    inset -6px -7px 10px #32071380,
+    0 8px 14px #40201855;
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(36px, 8vw, 53px);
+  font-weight: 400;
+  text-shadow: 1px 2px 1px #39101a;
+  transform: translate(-50%, -20%);
+}
+
+.wax-seal span {
+  font-family: "Great Vibes", cursive;
+  font-size: .7em;
+}
+
+.open-text {
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(26px, 5vw, 36px);
+  letter-spacing: 0;
+  color: #88652f;
+  margin-top: 18px;
+}
+
+.intro-note {
+  font-family: "Great Vibes", cursive;
+  font-size: 24px;
+  color: #806747;
+  margin: 0;
+}
+
+@media (max-width: 480px) {
+  .envelope-screen {
+    padding: 55px 25px 32px;
+  }
+
+  .envelope {
+    height: 38vh;
+    min-height: 270px;
+  }
+
+  .envelope::before {
+    border-bottom-width: max(270px, 38vh);
+  }
+
+  .envelope::after {
+    border-top-width: max(270px, 38vh);
+  }
+}
+
