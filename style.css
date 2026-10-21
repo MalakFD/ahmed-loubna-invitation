@@ -811,3 +811,77 @@ footer .arabic {
   }
 }
 
+
+/* ===== MOROCCAN LUXURY BACKGROUND ===== */
+
+.envelope-screen {
+  background-color: #f5e7cd !important;
+  background-image:
+    radial-gradient(ellipse at center, #fff9ed 0%, #f4e4c7 72%, #dfc49a 100%) !important;
+  position: relative;
+  isolation: isolate;
+}
+
+.envelope-screen::before {
+  content: "";
+  position: absolute;
+  inset: 15px;
+  border: 1px solid #b28a45;
+  outline: 1px solid #b28a4550;
+  outline-offset: 5px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.envelope-screen::after {
+  content: "❈  ✧  ❈";
+  position: absolute;
+  top: 24px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 28px;
+  letter-spacing: 12px;
+  color: #a47b39;
+  pointer-events: none;
+}
+
+.envelope-screen {
+  border: 8px solid transparent;
+  border-image: repeating-linear-gradient(
+    45deg,
+    #a47b39 0px,
+    #e8d1a1 3px,
+    #fff5df 6px,
+    #a47b39 9px
+  ) 8;
+}
+
+.envelope-screen .eyebrow {
+  text-shadow: 0 1px 0 #fff8e9;
+}
+
+.envelope-screen .intro-note {
+  max-width: 360px;
+  line-height: 1.8;
+  text-shadow: 0 1px 0 #fff8e9;
+}
+
+.envelope-screen .small-arabic {
+  color: #722c3b;
+}
+
+.envelope {
+  border-radius: 2px;
+  outline: 1px solid #b28a4580;
+  outline-offset: 5px;
+}
+
+.wax-seal {
+  border-width: 5px;
+  box-shadow:
+    inset 3px 3px 8px #f6b2a34d,
+    inset -6px -7px 10px #32071380,
+    0 8px 14px #40201855,
+    0 0 0 3px #d8bb8050;
+}
