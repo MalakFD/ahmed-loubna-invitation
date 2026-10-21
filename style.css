@@ -645,3 +645,8 @@ footer .arabic {
     border-right-width: 50%;
   }
 }
+
+/* DESIGN TEST */
+.envelope-screen {
+  background: #f3e4c8 !important;
+}
