@@ -1,1 +1,216 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8f1e5">
+
+  <title>Ahmed & Loubna | Wedding Invitation</title>
+  <meta name="description" content="An invitation to celebrate Ahmed and Loubna's wedding.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <main>
+    <!-- OPENING ENVELOPE -->
+    <section id="opening" class="opening">
+      <div class="envelope-scene">
+        <p class="eyebrow">A SPECIAL INVITATION</p>
+
+        <button
+          id="open-envelope"
+          class="envelope-button"
+          aria-label="Open the wedding invitation"
+        >
+          <div class="envelope">
+            <div class="envelope-flap"></div>
+
+            <div class="letter">
+              <span class="letter-small">YOU ARE CORDIALLY INVITED</span>
+              <span class="letter-names">Ahmed & Loubna</span>
+              <span class="letter-date">OUR WEDDING DAY</span>
+            </div>
+
+            <div class="envelope-front"></div>
+
+            <div class="wax-seal">
+              <span>A</span>
+              <span class="seal-amp">&</span>
+              <span>L</span>
+            </div>
+          </div>
+        </button>
+
+        <p class="tap-hint">Tap the seal to open your invitation</p>
+        <p class="tap-hint arabic" lang="ar" dir="rtl">
+          اضغطوا على الختم لفتح دعوتكم
+        </p>
+      </div>
+    </section>
+
+    <!-- MAIN INVITATION -->
+    <section id="invitation" class="invitation hidden">
+      <div class="ornament top-ornament" aria-hidden="true">✧ ❈ ✧</div>
+
+      <p class="bismillah arabic" lang="ar" dir="rtl">
+        بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+      </p>
+      <p class="translation">
+        In the name of Allah, the Most Gracious, the Most Merciful
+      </p>
+
+      <div class="gold-line"></div>
+
+      <p class="arabic heading-ar" lang="ar" dir="rtl">
+        يَسْعَدُنَا دَعْوَتُكُمْ لِحُضُورِ حَفْلِ زَفَافِنَا
+      </p>
+      <p class="translation">
+        We joyfully invite you to celebrate our wedding
+      </p>
+
+      <h1 class="couple-names">Ahmed <span>&amp;</span> Loubna</h1>
+
+      <p class="arabic verse" lang="ar" dir="rtl">
+        وَخَلَقْنَاكُمْ أَزْوَاجًا
+      </p>
+      <p class="verse-english">“And We created you in pairs.”</p>
+      <p class="verse-reference">THE HOLY QUR'AN · AN-NABA 78:8</p>
+
+      <div class="gold-line"></div>
+
+      <section class="details">
+        <p class="section-kicker">THE BEGINNING OF FOREVER</p>
+        <h2 class="arabic" lang="ar" dir="rtl">موعدنا مع الفرح</h2>
+        <h2 class="details-title">The Wedding Celebration</h2>
+
+        <div class="detail-item">
+          <span class="detail-icon" aria-hidden="true">✧</span>
+          <p class="detail-label">DATE · التاريخ</p>
+          <p id="wedding-date" class="detail-value">
+            Date to be announced
+          </p>
+        </div>
+
+        <div class="detail-item">
+          <span class="detail-icon" aria-hidden="true">◷</span>
+          <p class="detail-label">TIME · الساعة</p>
+          <p id="wedding-time" class="detail-value">
+            Time to be announced
+          </p>
+        </div>
+
+        <div class="detail-item">
+          <span class="detail-icon" aria-hidden="true">⌖</span>
+          <p class="detail-label">VENUE · المكان</p>
+          <p id="venue-name" class="detail-value">
+            Wedding venue name
+          </p>
+          <p id="venue-address" class="translation">
+            Venue address
+          </p>
+        </div>
+
+        <a
+          id="map-link"
+          class="gold-button"
+          href="https://maps.google.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          OPEN GOOGLE MAPS · افتحوا الخريطة
+        </a>
+
+        <div id="countdown" class="countdown" aria-live="polite">
+          <div><strong id="days">--</strong><span>Days</span></div>
+          <div><strong id="hours">--</strong><span>Hours</span></div>
+          <div><strong id="minutes">--</strong><span>Minutes</span></div>
+          <div><strong id="seconds">--</strong><span>Seconds</span></div>
+        </div>
+      </section>
+
+      <!-- RSVP FORM -->
+      <section class="rsvp">
+        <div class="gold-line"></div>
+
+        <p class="section-kicker">KINDLY REPLY</p>
+        <h2 class="arabic" lang="ar" dir="rtl">تأكيد الحضور</h2>
+        <h2 class="details-title">Confirm Your Attendance</h2>
+
+        <p class="translation">
+          Your presence would mean the world to us.
+        </p>
+        <p class="translation arabic" lang="ar" dir="rtl">
+          حضوركم يزيد فرحتنا بهجة
+        </p>
+
+        <form id="rsvp-form">
+          <label for="guest-name">
+            Full name · الاسم الكامل
+          </label>
+          <input
+            id="guest-name"
+            name="guestName"
+            type="text"
+            autocomplete="name"
+            maxlength="100"
+            required
+            placeholder="Your full name"
+          >
+
+          <label for="attendance">
+            Will you attend? · هل ستحضرون؟
+          </label>
+          <select id="attendance" name="attendance" required>
+            <option value="yes">Yes, I will attend · نعم، سأحضر</option>
+            <option value="no">Sorry, I cannot attend · أعتذر عن الحضور</option>
+          </select>
+
+          <div id="guest-fields">
+            <label for="guest-count">
+              Total number attending · عدد الحاضرين
+            </label>
+            <select id="guest-count" name="guestCount">
+              <option value="1">1 person</option>
+              <option value="2">2 people</option>
+              <option value="3">3 people</option>
+              <option value="4">4 people</option>
+              <option value="5">5 people</option>
+            </select>
+
+            <label for="guest-list">
+              Names of all attendees · أسماء الحاضرين
+            </label>
+            <textarea
+              id="guest-list"
+              name="guestList"
+              rows="4"
+              maxlength="1000"
+              placeholder="Please list the full names of everyone attending"
+            ></textarea>
+          </div>
+
+          <button id="submit-rsvp" class="gold-button" type="submit">
+            SEND MY RESPONSE · تأكيد الحضور
+          </button>
+
+          <p id="form-message" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <footer>
+        <div class="ornament" aria-hidden="true">✧ ❈ ✧</div>
+        <p class="arabic" lang="ar" dir="rtl">بكل الحب، أحمد ولبنى</p>
+        <p>With love, Ahmed &amp; Loubna</p>
+      </footer>
+    </section>
+  </main>
+</body>
+</html>
+
