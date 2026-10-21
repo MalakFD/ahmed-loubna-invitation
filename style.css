@@ -885,3 +885,26 @@ footer .arabic {
     0 8px 14px #40201855,
     0 0 0 3px #d8bb8050;
 }
+
+/* MOROCCAN LUXURY BACKGROUND FIX */
+.envelope-scene {
+  background:
+    radial-gradient(circle at center, #fff8e9 0%, #ead4ad 65%, #c9a66b 100%) !important;
+  position: relative;
+}
+
+.envelope-scene::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border: 2px solid #a47b39;
+  outline: 1px solid #a47b39;
+  outline-offset: 5px;
+  pointer-events: none;
+}
+
+.envelope-scene .envelope {
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 12px 30px #6b452533;
+}
