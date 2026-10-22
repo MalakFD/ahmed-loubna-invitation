@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Ahmed & Loubna | Wedding Invitation</title>
   <meta name="theme-color" content="#f8f1e5">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,54 +14,48 @@
 </head>
 <body>
   <main>
-   <section id="envelopeScreen" class="envelope-screen">
-  <button id="openEnvelope" class="envelope-button" aria-label="Open wedding invitation">
-    
-    <!-- Cadre extérieur de la lettre -->
-    <div class="envelope-border"></div>
+    <!-- PAGE 1 : ENVELOPPE EN PLEIN ÉCRAN -->
+    <section id="envelopeScreen" class="envelope-screen">
+      <button id="openEnvelope" class="envelope-button" aria-label="Open wedding invitation">
+        
+        <!-- Cadre intérieur doré -->
+        <div class="envelope-border">
+          <span class="corner-icon top-left">❖</span>
+          <span class="corner-icon top-right">❖</span>
+          <span class="corner-icon bottom-left">❖</span>
+          <span class="corner-icon bottom-right">❖</span>
+        </div>
 
-    <!-- Rabats de l'enveloppe (4 côtés) -->
-    <div class="flap top-flap">
-      <div class="flap-content">
-        <p class="script-title">A Special Invitation</p>
-        <div class="gold-divider"><span>❖</span></div>
-      </div>
-    </div>
+        <!-- Rabats de l'enveloppe -->
+        <div class="flap top-flap">
+          <div class="flap-content top-content">
+            <p class="script-title">A Special Invitation</p>
+            <div class="gold-divider"><span>❖</span></div>
+          </div>
+        </div>
 
-    <div class="flap bottom-flap">
-      <div class="flap-content">
-        <p class="script-instruction">Tap the seal to open your invitation</p>
-        <div class="gold-divider"><span>❖</span></div>
-        <p class="arabic-instruction" lang="ar" dir="rtl">اضغطوا على الختم لفتح دعوتكم</p>
-      </div>
-    </div>
+        <div class="flap bottom-flap">
+          <div class="flap-content bottom-content">
+            <p class="script-instruction">Tap the seal to open your invitation</p>
+            <div class="gold-divider"><span>❖</span></div>
+            <p class="arabic-instruction" lang="ar" dir="rtl">اضغطوا على الختم لفتح دعوتكم</p>
+          </div>
+        </div>
 
-    <div class="flap left-flap"></div>
-    <div class="flap right-flap"></div>
+        <div class="flap left-flap"></div>
+        <div class="flap right-flap"></div>
 
-    <!-- Sceau en cire parfaitement centré au milieu -->
-    <div class="wax-seal-wrapper">
-      <div class="wax-seal">
-        <span class="monogram">A<i>&</i>L</span>
-      </div>
-    </div>
+        <!-- Sceau bordeaux centré -->
+        <div class="wax-seal-wrapper">
+          <div class="wax-seal">
+            <span class="monogram">A<i>&</i>L</span>
+          </div>
+        </div>
 
-  </button>
-</section>
+      </button>
+    </section>
 
-    <!-- Rabat inférieur avec les instructions -->
-    <div class="flap bottom-flap">
-      <p class="script-instruction">Tap the seal to open your invitation</p>
-      <div class="gold-divider"><span>❖</span></div>
-      <p class="arabic-instruction" lang="ar" dir="rtl">اضغطوا على الختم لفتح دعوتكم</p>
-    </div>
-
-    <!-- Coin inférieur décoratif -->
-    <div class="corner-ornament bottom-ornament">❖</div>
-
-  </button>
-</section>
-
+    <!-- PAGE 2 : INVITATION PRINCIPALE -->
     <section id="invitation" class="invitation hidden">
       <div class="ornament">✦ ❈ ✦</div>
       <p class="eyebrow">TOGETHER WITH OUR FAMILIES</p>
