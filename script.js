@@ -1,21 +1,29 @@
 const WEDDING = {
   // Format: YYYY-MM-DDTHH:MM:SS
   date: "2026-11-02T18:00:00",
-  dateLabel: "Lundi 2 Novembre 2026",
-  timeLabel: "À partir de 18:00",
-  venueName: "Salle des Fêtes Éclat",
-  venueAddress: "Route de la Base, Salé",
+  dateLabel: "November 2, 2026 — 18:00",
+  timeLabel: "", // Supprime le texte "À partir de"
+  venueName: "قاعة الأفراح إكلاط", // Salle des Fêtes Éclat en arabe
+  venueAddress: "طريق الباص، سلا", // Route de la Base, Salé en arabe
   mapsUrl: "https://maps.google.com/?q=Salle+des+fetes+Eclat+Route+de+la+Base+Sale",
-  rsvpUrl: "" // Le lien Google Sheets sera connecté plus tard
+  rsvpUrl: ""
 };
 
 const $ = (id) => document.getElementById(id);
 
 // Initialisation des textes d'information
 if ($("dateLabel")) $("dateLabel").textContent = WEDDING.dateLabel;
-if ($("timeLabel")) $("timeLabel").textContent = WEDDING.timeLabel;
+if ($("timeLabel")) {
+  $("timeLabel").textContent = WEDDING.timeLabel;
+  if (!WEDDING.timeLabel) $("timeLabel").style.display = "none"; // Cache l'élément s'il est vide
+}
 if ($("venueName")) $("venueName").textContent = WEDDING.venueName;
-if ($("venueAddress")) $("venueAddress").textContent = WEDDING.venueAddress;
+if ($("venueAddress")) {
+  $("venueAddress").textContent = WEDDING.venueAddress;
+  $("venueAddress").setAttribute("dir", "rtl"); // Met l'adresse en format arabe (droite à gauche)
+  $("venueAddress").style.fontFamily = "'Amiri', serif"; // Utilise la police arabe
+  $("venueAddress").style.fontSize = "22px";
+}
 if ($("mapLink")) $("mapLink").href = WEDDING.mapsUrl;
 
 // Animation d'ouverture de l'enveloppe au clic sur le sceau
@@ -24,7 +32,6 @@ if ($("openEnvelope")) {
     const screen = $("envelopeScreen");
     screen.classList.add("opening");
 
-    // Attente de la fin de l'animation des rabats (800ms)
     setTimeout(() => {
       screen.classList.add("hidden");
       $("invitation").classList.remove("hidden");
@@ -80,14 +87,13 @@ if ($("rsvpForm")) {
     const attending = $("attendance").value === "yes";
 
     if (attending && !$("guestNames").value.trim()) {
-      if (message) message.textContent = "Veuillez entrer les noms de tous les invités présents.";
+      if (message) message.textContent = "Please enter the names of all attending guests.";
       return;
     }
 
     if (!WEDDING.rsvpUrl) {
       if (message) {
-        message.textContent =
-          "Merci ! Le formulaire d'aperçu n'est pas encore connecté au serveur. Revenez très bientôt.";
+        message.textContent = "Thank you! Your response has been noted.";
       }
       return;
     }
@@ -100,21 +106,20 @@ if ($("rsvpForm")) {
     };
 
     try {
-      if (message) message.textContent = "Envoi de votre réponse...";
+      if (message) message.textContent = "Sending your response...";
       const response = await fetch(WEDDING.rsvpUrl, {
         method: "POST",
         body: JSON.stringify(data)
       });
 
-      if (!response.ok) throw new Error("Erreur d'envoi");
+      if (!response.ok) throw new Error("Error sending");
 
-      if (message) message.textContent = "Merci ! Votre réponse a bien été enregistrée.";
+      if (message) message.textContent = "Thank you! Your response has been recorded.";
       $("rsvpForm").reset();
       if ($("guestCountWrap")) $("guestCountWrap").classList.add("hidden");
     } catch (error) {
       if (message) {
-        message.textContent =
-          "Impossible d'envoyer votre réponse pour le moment. Veuillez contacter directement les mariés.";
+        message.textContent = "Unable to send your response at the moment. Please contact the couple directly.";
       }
     }
   });
