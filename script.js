@@ -1,11 +1,11 @@
 const WEDDING = {
   // Format: YYYY-MM-DDTHH:MM:SS
   date: "2026-11-02T18:00:00",
-  dateLabel: "2 Novembre 2026",
+  dateLabel: "Lundi 2 Novembre 2026",
   timeLabel: "À partir de 18:00",
-  venueName: "Wedding Venue",
-  venueAddress: "Adresse de la salle",
-  mapsUrl: "https://maps.google.com/",
+  venueName: "Salle des Fêtes Éclat",
+  venueAddress: "Route de la Base, Salé",
+  mapsUrl: "https://maps.google.com/?q=Salle+des+fetes+Eclat+Route+de+la+Base+Sale",
   rsvpUrl: "" // Le lien Google Sheets sera connecté plus tard
 };
 
