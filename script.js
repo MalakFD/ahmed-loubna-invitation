@@ -1,125 +1,107 @@
 
-/*
-  AHMED & LOUBNA — WEDDING INVITATION
-
-  We will fill in the real wedding details
-  and connect Google Apps Script later.
-*/
-
 const WEDDING = {
-  date: "", // Example: 2027-06-20T19:00:00
+  // Format: YYYY-MM-DDTHH:MM:SS
+  date: "",
   dateLabel: "Date to be announced",
   timeLabel: "Time to be announced",
   venueName: "Wedding venue name",
   venueAddress: "Venue address",
-  mapsUrl: "https://maps.google.com/"
+  mapsUrl: "https://maps.google.com/",
+  rsvpUrl: "" // We will connect the private Google Sheet later.
 };
 
-// Opening the envelope
-const opening = document.getElementById("opening");
-const invitation = document.getElementById("invitation");
-const openButton = document.getElementById("open-envelope");
+const $ = (id) => document.getElementById(id);
 
-openButton.addEventListener("click", () => {
-  if (opening.classList.contains("opening-done")) return;
+$("dateLabel").textContent = WEDDING.dateLabel;
+$("timeLabel").textContent = WEDDING.timeLabel;
+$("venueName").textContent = WEDDING.venueName;
+$("venueAddress").textContent = WEDDING.venueAddress;
+$("mapLink").href = WEDDING.mapsUrl;
 
-  opening.classList.add("opening-done");
-  openButton.disabled = true;
+$("openEnvelope").addEventListener("click", () => {
+  const screen = $("envelopeScreen");
+  screen.classList.add("opening");
 
-  // Allow the envelope animation to play.
-  window.setTimeout(() => {
-    opening.classList.add("hidden");
-    invitation.classList.remove("hidden");
+  setTimeout(() => {
+    screen.classList.add("hidden");
+    $("invitation").classList.remove("hidden");
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, 1000);
+  }, 650);
 });
 
-// Insert the wedding details
-document.getElementById("wedding-date").textContent =
-  WEDDING.dateLabel;
-
-document.getElementById("wedding-time").textContent =
-  WEDDING.timeLabel;
-
-document.getElementById("venue-name").textContent =
-  WEDDING.venueName;
-
-document.getElementById("venue-address").textContent =
-  WEDDING.venueAddress;
-
-document.getElementById("map-link").href =
-  WEDDING.mapsUrl;
-
-// Countdown
-const countdown = document.getElementById("countdown");
-
 function updateCountdown() {
-  if (!WEDDING.date) {
-    countdown.classList.add("hidden");
-    return;
-  }
+  if (!WEDDING.date) return;
 
   const target = new Date(WEDDING.date).getTime();
+  if (Number.isNaN(target)) return;
 
-  if (!Number.isFinite(target)) {
-    countdown.classList.add("hidden");
-    return;
+  $("countdown").classList.remove("hidden");
+
+  function tick() {
+    const distance = target - Date.now();
+
+    if (distance <= 0) {
+      $("countdown").classList.add("hidden");
+      return;
+    }
+
+    $("days").textContent = String(Math.floor(distance / 86400000)).padStart(2, "0");
+    $("hours").textContent = String(Math.floor((distance % 86400000) / 3600000)).padStart(2, "0");
+    $("minutes").textContent = String(Math.floor((distance % 3600000) / 60000)).padStart(2, "0");
+    $("seconds").textContent = String(Math.floor((distance % 60000) / 1000)).padStart(2, "0");
   }
 
-  const remaining = target - Date.now();
-
-  if (remaining <= 0) {
-    countdown.classList.add("hidden");
-    return;
-  }
-
-  countdown.classList.remove("hidden");
-
-  document.getElementById("days").textContent =
-    Math.floor(remaining / 86400000);
-
-  document.getElementById("hours").textContent =
-    Math.floor((remaining % 86400000) / 3600000);
-
-  document.getElementById("minutes").textContent =
-    Math.floor((remaining % 3600000) / 60000);
-
-  document.getElementById("seconds").textContent =
-    Math.floor((remaining % 60000) / 1000);
+  tick();
+  setInterval(tick, 1000);
 }
 
 updateCountdown();
-window.setInterval(updateCountdown, 1000);
 
-// Show guest fields only when attending
-const attendance = document.getElementById("attendance");
-const guestFields = document.getElementById("guest-fields");
-const guestCount = document.getElementById("guest-count");
-const guestList = document.getElementById("guest-list");
+$("attendance").addEventListener("change", (event) => {
+  const attending = event.target.value === "yes";
+  $("guestCountWrap").classList.toggle("hidden", !attending);
+  $("guestCount").required = attending;
+  $("guestNames").required = attending;
+});
 
-function updateGuestFields() {
-  const attending = attendance.value === "yes";
-
-  guestFields.classList.toggle("hidden", !attending);
-  guestCount.required = attending;
-  guestList.required = attending;
-
-  guestCount.disabled = !attending;
-  guestList.disabled = !attending;
-}
-
-attendance.addEventListener("change", updateGuestFields);
-updateGuestFields();
-
-// RSVP — the backend will be connected in a later step.
-const form = document.getElementById("rsvp-form");
-const formMessage = document.getElementById("form-message");
-
-form.addEventListener("submit", (event) => {
+$("rsvpForm").addEventListener("submit", async (event) => {
   event.preventDefault();
 
-  formMessage.textContent =
-    "The RSVP form is not connected yet. Please wait until setup is complete.";
+  const message = $("rsvpMessage");
+  const attending = $("attendance").value === "yes";
 
-  formMessage.style.color = "#80612f";
+  if (attending && !$("guestNames").value.trim()) {
+    message.textContent = "Please enter the names of all attending guests.";
+    return;
+  }
+
+  if (!WEDDING.rsvpUrl) {
+    message.textContent =
+      "Thank you! The RSVP form is a preview and is not connected yet. Please check back soon.";
+    return;
+  }
+
+  const data = {
+    guestName: $("guestName").value.trim(),
+    attendance: $("attendance").value,
+    guestCount: attending ? $("guestCount").value : 0,
+    guestNames: attending ? $("guestNames").value.trim() : ""
+  };
+
+  try {
+    message.textContent = "Sending your RSVP...";
+    const response = await fetch(WEDDING.rsvpUrl, {
+      method: "POST",
+      body: JSON.stringify(data)
+    });
+
+    if (!response.ok) throw new Error("Submission failed");
+
+    message.textContent = "Thank you! Your response has been received.";
+    $("rsvpForm").reset();
+    $("guestCountWrap").classList.add("hidden");
+  } catch (error) {
+    message.textContent =
+      "We could not send your RSVP. Please contact the hosts directly.";
+  }
 });
