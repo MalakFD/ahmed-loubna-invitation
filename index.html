@@ -1,262 +1,127 @@
-```html
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Ahmed & Loubna | Wedding Invitation</title>
   <meta name="theme-color" content="#f8f1e5">
-  <meta name="description" content="Invitation au mariage d'Ahmed et Loubna">
-  <title>Ahmed &amp; Loubna | Invitation de mariage</title>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
-
 <body>
-<main>
-
-  <!-- PAGE 1 : ENVELOPPE -->
-  <section id="envelopeScreen" class="envelope-screen">
-    <button id="openEnvelope" class="envelope-button" type="button"
-  aria-label="Ouvrir notre invitation"
-  onclick="document.getElementById('envelopeScreen').classList.add('opening'); setTimeout(function(){document.getElementById('envelopeScreen').classList.add('hidden'); document.getElementById('invitation').classList.remove('hidden'); window.scrollTo(0,0);}, 1000);">
-      <div class="envelope-border" aria-hidden="true">
-        <span class="corner-icon top-left">❖</span>
-        <span class="corner-icon top-right">❖</span>
-        <span class="corner-icon bottom-left">❖</span>
-        <span class="corner-icon bottom-right">❖</span>
-      </div>
-
-      <div class="flap top-flap" aria-hidden="true"></div>
-      <div class="flap bottom-flap" aria-hidden="true"></div>
-      <div class="flap left-flap" aria-hidden="true"></div>
-      <div class="flap right-flap" aria-hidden="true"></div>
-
-      <div class="envelope-copy">
-        <p class="script-title">A Special Invitation</p>
-        <p class="envelope-arabic" lang="ar" dir="rtl">
-          دعوة خاصة لحضور فرحتنا
-        </p>
-
-        <div class="gold-divider" aria-hidden="true">
-          <span>❖</span>
+  <main>
+    <!-- PAGE 1 : ENVELOPPE EN PLEIN ÉCRAN -->
+    <section id="envelopeScreen" class="envelope-screen">
+      <button id="openEnvelope" class="envelope-button" aria-label="Open wedding invitation">
+        
+        <!-- Cadre intérieur doré -->
+        <div class="envelope-border">
+          <span class="corner-icon top-left">❖</span>
+          <span class="corner-icon top-right">❖</span>
+          <span class="corner-icon bottom-left">❖</span>
+          <span class="corner-icon bottom-right">❖</span>
         </div>
 
-        <p class="script-instruction">Tap the seal to open</p>
-        <p class="arabic-instruction" lang="ar" dir="rtl">
-          اضغطوا على الختم لفتح دعوتكم
-        </p>
-      </div>
-
-      <div class="wax-seal-wrapper" aria-hidden="true">
-        <div class="wax-seal">
-          <span class="monogram">A<i>&amp;</i>L</span>
+        <!-- Rabats de l'enveloppe -->
+        <div class="flap top-flap">
+          <div class="flap-content top-content">
+            <p class="script-title">A Special Invitation</p>
+            <div class="gold-divider"><span>❖</span></div>
+          </div>
         </div>
-      </div>
 
-    </button>
-  </section>
+        <div class="flap bottom-flap">
+          <div class="flap-content bottom-content">
+            <p class="script-instruction">Tap the seal to open your invitation</p>
+            <div class="gold-divider"><span>❖</span></div>
+            <p class="arabic-instruction" lang="ar" dir="rtl">اضغطوا على الختم لفتح دعوتكم</p>
+          </div>
+        </div>
 
+        <div class="flap left-flap"></div>
+        <div class="flap right-flap"></div>
 
-  <!-- PAGE 2 : INVITATION -->
-  <section id="invitation" class="invitation hidden">
+        <!-- Sceau bordeaux centré -->
+        <div class="wax-seal-wrapper">
+          <div class="wax-seal">
+            <span class="monogram">A<i>&</i>L</span>
+          </div>
+        </div>
 
-    <div class="card-border" aria-hidden="true">
-      <span class="card-corner top-l">❖</span>
-      <span class="card-corner top-r">❖</span>
-      <span class="card-corner bottom-l">❖</span>
-      <span class="card-corner bottom-r">❖</span>
-    </div>
+      </button>
+    </section>
 
-    <div class="card-content">
+    <!-- PAGE 2 : INVITATION PRINCIPALE -->
+    <section id="invitation" class="invitation hidden">
+      <div class="ornament">✦ ❈ ✦</div>
+      <p class="eyebrow">TOGETHER WITH OUR FAMILIES</p>
+      <h1 class="names">Ahmed <span>&</span> Loubna</h1>
 
-      <!-- BISMILLAH -->
-      <p class="bismillah" lang="ar" dir="rtl">
-        بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+      <p class="arabic-heading" lang="ar" dir="rtl">
+        يَسْعَدُنَا دَعْوَتُكُمْ لِحُضُورِ حَفْلِ زَفَافِنَا
       </p>
+      <p class="english-heading">Joyfully invite you to celebrate their wedding</p>
 
-      <!-- INTRODUCTION EN FRANÇAIS ET EN ARABE -->
-      <div class="invitation-text-group">
-        <p class="intro-french">Avec la grâce de Dieu et entourés de nos familles,</p>
-        <p class="intro-french">
-          nous avons le bonheur de vous inviter à célébrer notre mariage.
-        </p>
+      <div class="divider">❧</div>
 
-        <p class="arabic-invite" lang="ar" dir="rtl">
-          بفضل الله وبمحبة عائلتينا،<br>
-          يسعدنا دعوتكم لمشاركتنا فرحة زفافنا.
-        </p>
-      </div>
+      <p class="verse" lang="ar" dir="rtl">وَخَلَقْنَاكُمْ أَزْوَاجًا</p>
+      <p class="verse-translation">“And We created you in pairs.”</p>
+      <p class="verse-source">SURAH AN-NABA · 78:8</p>
 
-      <div class="gold-line-divider" aria-hidden="true">
-        <span>✧</span>
-      </div>
-
-      <!-- NOMS DES MARIÉS -->
-      <div class="couple-names">
-        <span class="name">Ahmed</span>
-        <span class="ampersand">&amp;</span>
-        <span class="name">Loubna</span>
-      </div>
-
-      <div class="gold-line-divider" aria-hidden="true">
-        <span>✧</span>
-      </div>
-
-      <!-- DATE EN ARABE UNIQUEMENT -->
       <div class="details">
-
-        <p class="section-kicker" lang="ar" dir="rtl">
-          يوم فرحتنا
-        </p>
-
-        <h2 id="dateLabel" class="date-arabic" lang="ar" dir="rtl">
-          الاثنين، ٢ نوفمبر ٢٠٢٦
-        </h2>
-
-        <p id="timeLabel" class="time-label" lang="ar" dir="rtl">
-          ابتداءً من الساعة السادسة مساءً
-        </p>
-
-        <div class="detail-ornament" aria-hidden="true">❖</div>
-
-        <!-- LIEU : NOM SEULEMENT, LIEN GOOGLE MAPS -->
-        <p class="venue-caption" lang="ar" dir="rtl">
-          مكان الحفل
-        </p>
-
-        <a id="mapLink" class="venue-link"
-          href="https://www.google.com/maps/search/?api=1&amp;query=Eclaire"
-          target="_blank" rel="noopener noreferrer">
-          Eclaire <span aria-hidden="true">↗</span>
-        </a>
-
-        <!-- COMPTE À REBOURS -->
-        <div id="countdown" class="countdown">
-          <div>
-            <strong id="days">00</strong>
-            <span>Jours</span>
-          </div>
-          <div>
-            <strong id="hours">00</strong>
-            <span>Heures</span>
-          </div>
-          <div>
-            <strong id="minutes">00</strong>
-            <span>Minutes</span>
-          </div>
-          <div>
-            <strong id="seconds">00</strong>
-            <span>Secondes</span>
-          </div>
+        <p class="eyebrow">PLEASE JOIN US</p>
+        <h2 id="dateLabel">Wedding date to be announced</h2>
+        <p id="timeLabel">Time to be announced</p>
+        <div class="divider">✧</div>
+        <h2 id="venueName">Wedding venue</h2>
+        <p id="venueAddress">Venue address to be announced</p>
+        <a id="mapLink" class="map-link" href="https://maps.google.com/" target="_blank" rel="noopener">VIEW LOCATION ↗</a>
+        <div id="countdown" class="countdown hidden">
+          <div><strong id="days">00</strong><span>Days</span></div>
+          <div><strong id="hours">00</strong><span>Hours</span></div>
+          <div><strong id="minutes">00</strong><span>Minutes</span></div>
+          <div><strong id="seconds">00</strong><span>Seconds</span></div>
         </div>
-
       </div>
 
-
-      <!-- RSVP : CONFIRMATION DE PRÉSENCE -->
-      <section class="rsvp" aria-labelledby="rsvpTitle">
-
-        <div class="detail-ornament" aria-hidden="true">✧</div>
-
-        <h2 id="rsvpTitle">Votre présence nous réjouira</h2>
-
-        <p class="arabic-heading" lang="ar" dir="rtl">
-          حضوركم يزيد فرحتنا
-        </p>
-
-        <p class="rsvp-copy">
-          Merci de nous confirmer votre présence.
-        </p>
+      <section class="rsvp">
+        <div class="ornament">✦</div>
+        <h2>Kindly RSVP</h2>
+        <p class="arabic-heading" lang="ar" dir="rtl">نرجو تأكيد الحضور</p>
+        <p>Please let us know if you can join us.</p>
 
         <form id="rsvpForm">
+          <label for="guestName">Your full name</label>
+          <input id="guestName" name="guestName" required placeholder="Full name">
 
-          <label for="guestName">
-            Votre nom complet
-            <span lang="ar" dir="rtl">الاسم الكامل</span>
-          </label>
-
-          <input
-            id="guestName"
-            name="guestName"
-            type="text"
-            autocomplete="name"
-            maxlength="120"
-            required
-            placeholder="Nom et prénom">
-
-          <label for="attendance">
-            Serez-vous présent(e) ?
-            <span lang="ar" dir="rtl">هل ستحضرون؟</span>
-          </label>
-
+          <label for="attendance">Will you attend?</label>
           <select id="attendance" name="attendance" required>
-            <option value="">Choisissez votre réponse</option>
-            <option value="yes">Oui, avec joie — نعم، بكل سرور</option>
-            <option value="no">Désolé(e), absent(e) — نعتذر عن الحضور</option>
+            <option value="">Please select</option>
+            <option value="yes">Joyfully accepts</option>
+            <option value="no">Regretfully declines</option>
           </select>
 
-          <!-- CES CHAMPS S'AFFICHENT SI LA RÉPONSE EST OUI -->
           <div id="guestCountWrap" class="hidden">
-
-            <label for="guestCount">
-              Nombre total de personnes, vous compris
-            </label>
-
-            <input
-              id="guestCount"
-              name="guestCount"
-              type="number"
-              min="1"
-              max="20"
-              value="1">
-
-            <label for="guestNames">
-              Noms des personnes qui vous accompagneront
-            </label>
-
-            <textarea
-              id="guestNames"
-              name="guestNames"
-              rows="3"
-              maxlength="1000"
-              placeholder="Écrivez les noms des accompagnants"></textarea>
-
+            <label for="guestCount">Total number attending (including you)</label>
+            <input id="guestCount" name="guestCount" type="number" min="1" max="20" value="1">
+            <label for="guestNames">Names of all attending guests</label>
+            <textarea id="guestNames" name="guestNames" rows="3" placeholder="Write each guest's name"></textarea>
           </div>
 
-          <button class="submit-button" type="submit">
-            CONFIRMER MA PRÉSENCE
-          </button>
-
-          <p id="rsvpMessage" class="rsvp-message"
-             role="status" aria-live="polite"></p>
-
+          <button class="submit-button" type="submit">SEND RSVP</button>
+          <p id="rsvpMessage" class="rsvp-message" role="status"></p>
         </form>
       </section>
 
-
-      <!-- BÉNÉDICTION FINALE -->
       <footer>
-        <div class="footer-ornament" aria-hidden="true">❧ ✧ ❧</div>
-
-        <p class="blessing" lang="ar" dir="rtl">
-          بارك الله لهما وبارك عليهما وجمع بينهما في خير
-        </p>
-
-        <p class="footer-love">
-          Avec tout notre amour,<br>
-          Ahmed &amp; Loubna
-        </p>
+        <p lang="ar" dir="rtl">بارك الله لهما وبارك عليهما وجمع بينهما في خير</p>
+        <p>With love, Ahmed & Loubna</p>
       </footer>
-
-    </div>
-  </section>
-
-</main>
+    </section>
+  </main>
 </body>
 </html>
-```
