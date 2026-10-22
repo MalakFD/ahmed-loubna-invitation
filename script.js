@@ -2,45 +2,59 @@ const WEDDING = {
   // Format: YYYY-MM-DDTHH:MM:SS
   date: "2026-11-02T18:00:00",
   dateLabel: "November 2, 2026 — 18:00",
-  timeLabel: "", // Supprime le texte "À partir de"
-  venueName: "قاعة الأفراح إكلاط", // Salle des Fêtes Éclat en arabe
-  venueAddress: "طريق الباص، سلا", // Route de la Base, Salé en arabe
+  timeLabel: "", // Laisse vide car l'heure est intégrée directement dans dateLabel
+  venueName: "قاعة الأفراح إكلاط", // Salle des Fêtes Éclat
+  venueAddress: "طريق القاعدة، سلا", // Route de la Base, Salé
   mapsUrl: "https://maps.google.com/?q=Salle+des+fetes+Eclat+Route+de+la+Base+Sale",
-  rsvpUrl: ""
+  rsvpUrl: "" // Le lien Google Sheets/backend sera connecté ici
 };
 
 const $ = (id) => document.getElementById(id);
 
-// Initialisation des textes d'information
+// Initialisation des textes et attributs de langue
 if ($("dateLabel")) $("dateLabel").textContent = WEDDING.dateLabel;
+
 if ($("timeLabel")) {
   $("timeLabel").textContent = WEDDING.timeLabel;
-  if (!WEDDING.timeLabel) $("timeLabel").style.display = "none"; // Cache l'élément s'il est vide
+  if (!WEDDING.timeLabel) {
+    $("timeLabel").classList.add("hidden");
+    $("timeLabel").style.display = "none";
+  }
 }
-if ($("venueName")) $("venueName").textContent = WEDDING.venueName;
+
+if ($("venueName")) {
+  $("venueName").textContent = WEDDING.venueName;
+  $("venueName").setAttribute("dir", "rtl");
+  $("venueName").setAttribute("lang", "ar");
+}
+
 if ($("venueAddress")) {
   $("venueAddress").textContent = WEDDING.venueAddress;
-  $("venueAddress").setAttribute("dir", "rtl"); // Met l'adresse en format arabe (droite à gauche)
-  $("venueAddress").style.fontFamily = "'Amiri', serif"; // Utilise la police arabe
-  $("venueAddress").style.fontSize = "22px";
+  $("venueAddress").setAttribute("dir", "rtl");
+  $("venueAddress").setAttribute("lang", "ar");
 }
+
 if ($("mapLink")) $("mapLink").href = WEDDING.mapsUrl;
 
-// Animation d'ouverture de l'enveloppe au clic sur le sceau
+// Animation d'ouverture de l'enveloppe au clic
 if ($("openEnvelope")) {
   $("openEnvelope").addEventListener("click", () => {
     const screen = $("envelopeScreen");
-    screen.classList.add("opening");
+    if (screen) {
+      screen.classList.add("opening");
 
-    setTimeout(() => {
-      screen.classList.add("hidden");
-      $("invitation").classList.remove("hidden");
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }, 800);
+      setTimeout(() => {
+        screen.classList.add("hidden");
+        if ($("invitation")) {
+          $("invitation").classList.remove("hidden");
+        }
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }, 800);
+    }
   });
 }
 
-// Compte à rebours
+// Compte à rebours dynamique
 function updateCountdown() {
   if (!WEDDING.date || !$("countdown")) return;
 
@@ -69,7 +83,7 @@ function updateCountdown() {
 
 updateCountdown();
 
-// Gestion du formulaire RSVP
+// Formulaire RSVP : Affichage conditionnel des invités
 if ($("attendance")) {
   $("attendance").addEventListener("change", (event) => {
     const attending = event.target.value === "yes";
@@ -79,6 +93,7 @@ if ($("attendance")) {
   });
 }
 
+// Soumission du formulaire RSVP
 if ($("rsvpForm")) {
   $("rsvpForm").addEventListener("submit", async (event) => {
     event.preventDefault();
