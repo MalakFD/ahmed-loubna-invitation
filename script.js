@@ -1,39 +1,13 @@
 const WEDDING = {
   // Format: YYYY-MM-DDTHH:MM:SS
   date: "2026-11-02T18:00:00",
-  dateLabel: "November 2, 2026 — 18:00",
-  timeLabel: "", // Laisse vide car l'heure est intégrée directement dans dateLabel
-  venueName: "قاعة الأفراح إكلاط", // Salle des Fêtes Éclat
-  venueAddress: "طريق القاعدة، سلا", // Route de la Base, Salé
   mapsUrl: "https://maps.google.com/?q=Salle+des+fetes+Eclat+Route+de+la+Base+Sale",
   rsvpUrl: "" // Le lien Google Sheets/backend sera connecté ici
 };
 
 const $ = (id) => document.getElementById(id);
 
-// Initialisation des textes et attributs de langue
-if ($("dateLabel")) $("dateLabel").textContent = WEDDING.dateLabel;
-
-if ($("timeLabel")) {
-  $("timeLabel").textContent = WEDDING.timeLabel;
-  if (!WEDDING.timeLabel) {
-    $("timeLabel").classList.add("hidden");
-    $("timeLabel").style.display = "none";
-  }
-}
-
-if ($("venueName")) {
-  $("venueName").textContent = WEDDING.venueName;
-  $("venueName").setAttribute("dir", "rtl");
-  $("venueName").setAttribute("lang", "ar");
-}
-
-if ($("venueAddress")) {
-  $("venueAddress").textContent = WEDDING.venueAddress;
-  $("venueAddress").setAttribute("dir", "rtl");
-  $("venueAddress").setAttribute("lang", "ar");
-}
-
+// Mise à jour du lien Google Maps
 if ($("mapLink")) $("mapLink").href = WEDDING.mapsUrl;
 
 // Animation d'ouverture de l'enveloppe au clic
