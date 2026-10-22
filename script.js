@@ -4,14 +4,13 @@
    ===================================================== */
 
 const WEDDING = {
-  // Date et heure locales : 2 novembre 2026 à 18 h
+  // Mariage : 2 novembre 2026 à 18 h
   date: "2026-11-02T18:00:00",
 
-  // Recherche Google Maps par nom du lieu uniquement.
-  // À vérifier pour s'assurer qu'il s'agit de la bonne salle.
+  // Lien Google Maps
   mapsUrl: "https://www.google.com/maps/search/?api=1&query=Eclaire",
 
-  // À compléter après le déploiement du Google Apps Script.
+  // À compléter après la configuration de Google Sheets
   rsvpUrl: ""
 };
 
@@ -19,284 +18,287 @@ const $ = (id) => document.getElementById(id);
 
 
 /* =====================================================
-   LIEN GOOGLE MAPS
+   INITIALISATION DU SITE
    ===================================================== */
 
-if ($("mapLink")) {
-  $("mapLink").href = WEDDING.mapsUrl;
-}
+document.addEventListener("DOMContentLoaded", () => {
+
+  /* ===================================================
+     LIEN GOOGLE MAPS
+     =================================================== */
+
+  const mapLink = $("mapLink");
+
+  if (mapLink) {
+    mapLink.href = WEDDING.mapsUrl;
+    mapLink.target = "_blank";
+    mapLink.rel = "noopener noreferrer";
+  }
 
 
-/* =====================================================
-   OUVERTURE DE L'ENVELOPPE
-   ===================================================== */
+  /* ===================================================
+     OUVERTURE DE L'ENVELOPPE
+     =================================================== */
 
-if ($("openEnvelope")) {
-  $("openEnvelope").addEventListener("click", () => {
-    const screen = $("envelopeScreen");
-    const invitation = $("invitation");
+  const envelopeScreen = $("envelopeScreen");
+  const invitation = $("invitation");
+  const openEnvelope = $("openEnvelope");
 
-    if (!screen || !invitation || screen.classList.contains("opening")) {
+  function openInvitation() {
+    if (!envelopeScreen || !invitation) {
+      console.error(
+        "Ouverture impossible : vérifiez les identifiants envelopeScreen et invitation dans index.html."
+      );
       return;
     }
 
-    screen.classList.add("opening");
+    // Évite les clics multiples pendant l'animation
+    if (envelopeScreen.classList.contains("opening")) {
+      return;
+    }
 
-    // Laisse le temps à l'animation de se terminer.
+    envelopeScreen.classList.add("opening");
+
+    // Attend la fin de l'animation avant d'afficher l'invitation
     window.setTimeout(() => {
-      screen.classList.add("hidden");
+      envelopeScreen.classList.add("hidden");
       invitation.classList.remove("hidden");
 
       window.scrollTo({
         top: 0,
         behavior: "smooth"
       });
-    }, 900);
-  });
-}
-
-
-/* =====================================================
-   COMPTE À REBOURS
-   ===================================================== */
-
-function updateCountdown() {
-  const countdown = $("countdown");
-
-  if (!WEDDING.date || !countdown) {
-    return;
+    }, 1000);
   }
 
-  // Cette date sans suffixe de fuseau horaire est interprétée
-  // selon l'heure locale de l'appareil du visiteur.
-  const target = new Date(WEDDING.date).getTime();
-
-  if (Number.isNaN(target)) {
-    countdown.classList.add("hidden");
-    return;
+  if (openEnvelope) {
+    openEnvelope.addEventListener("click", (event) => {
+      event.preventDefault();
+      openInvitation();
+    });
+  } else {
+    console.error(
+      "Bouton introuvable : vérifiez id=\"openEnvelope\" dans index.html."
+    );
   }
 
-  function tick() {
-    const distance = target - Date.now();
 
-    if (distance <= 0) {
+  /* ===================================================
+     COMPTE À REBOURS
+     =================================================== */
+
+  function updateCountdown() {
+    const countdown = $("countdown");
+
+    if (!countdown || !WEDDING.date) {
+      return;
+    }
+
+    const target = new Date(WEDDING.date).getTime();
+
+    if (Number.isNaN(target)) {
       countdown.classList.add("hidden");
       return;
     }
 
-    countdown.classList.remove("hidden");
+    function tick() {
+      const distance = target - Date.now();
 
-    const days = Math.floor(distance / 86400000);
-    const hours = Math.floor((distance % 86400000) / 3600000);
-    const minutes = Math.floor((distance % 3600000) / 60000);
-    const seconds = Math.floor((distance % 60000) / 1000);
-
-    if ($("days")) {
-      $("days").textContent = String(days).padStart(2, "0");
-    }
-
-    if ($("hours")) {
-      $("hours").textContent = String(hours).padStart(2, "0");
-    }
-
-    if ($("minutes")) {
-      $("minutes").textContent = String(minutes).padStart(2, "0");
-    }
-
-    if ($("seconds")) {
-      $("seconds").textContent = String(seconds).padStart(2, "0");
-    }
-  }
-
-  tick();
-
-  // Évite de créer plusieurs compteurs si la fonction est rappelée.
-  if (!countdown.dataset.timerStarted) {
-    countdown.dataset.timerStarted = "true";
-    window.setInterval(tick, 1000);
-  }
-}
-
-updateCountdown();
-
-
-/* =====================================================
-   AFFICHAGE DES CHAMPS ACCOMPAGNANTS
-   ===================================================== */
-
-const attendanceSelect = $("attendance");
-const guestCountWrap = $("guestCountWrap");
-const guestCountInput = $("guestCount");
-const guestNamesInput = $("guestNames");
-
-function updateGuestFields() {
-  if (!attendanceSelect || !guestCountWrap) {
-    return;
-  }
-
-  const attending = attendanceSelect.value === "yes";
-
-  guestCountWrap.classList.toggle("hidden", !attending);
-
-  if (guestCountInput) {
-    guestCountInput.required = attending;
-  }
-
-  if (guestNamesInput) {
-    guestNamesInput.required = attending;
-  }
-}
-
-if (attendanceSelect) {
-  attendanceSelect.addEventListener("change", updateGuestFields);
-  updateGuestFields();
-}
-
-
-/* =====================================================
-   ENVOI DU FORMULAIRE RSVP
-   ===================================================== */
-
-const rsvpForm = $("rsvpForm");
-
-if (rsvpForm) {
-  rsvpForm.addEventListener("submit", async (event) => {
-    event.preventDefault();
-
-    const message = $("rsvpMessage");
-    const submitButton = rsvpForm.querySelector(
-      'button[type="submit"]'
-    );
-
-    const guestName = $("guestName");
-    const attendance = $("attendance");
-
-    if (!guestName || !attendance) {
-      if (message) {
-        message.textContent =
-          "Une erreur est survenue. Merci de réessayer.";
-      }
-      return;
-    }
-
-    const name = guestName.value.trim();
-    const responseValue = attendance.value;
-    const attending = responseValue === "yes";
-
-    // Vérification du nom.
-    if (!name) {
-      if (message) {
-        message.textContent =
-          "Merci d'indiquer votre nom complet.";
-      }
-      guestName.focus();
-      return;
-    }
-
-    // Vérification de la réponse.
-    if (responseValue !== "yes" && responseValue !== "no") {
-      if (message) {
-        message.textContent =
-          "Merci de choisir une réponse.";
-      }
-      attendance.focus();
-      return;
-    }
-
-    let guestCount = 0;
-    let guestNames = "";
-
-    if (attending) {
-      guestCount = Number(guestCountInput?.value || 0);
-      guestNames = guestNamesInput?.value.trim() || "";
-
-      if (!Number.isInteger(guestCount) ||
-          guestCount < 1 ||
-          guestCount > 20) {
-        if (message) {
-          message.textContent =
-            "Merci d'indiquer un nombre de personnes entre 1 et 20.";
-        }
-        guestCountInput?.focus();
+      if (distance <= 0) {
+        countdown.classList.add("hidden");
         return;
       }
 
-      if (!guestNames) {
-        if (message) {
-          message.textContent =
-            "Merci d'indiquer les noms des personnes présentes.";
+      countdown.classList.remove("hidden");
+
+      const values = {
+        days: Math.floor(distance / 86400000),
+        hours: Math.floor((distance % 86400000) / 3600000),
+        minutes: Math.floor((distance % 3600000) / 60000),
+        seconds: Math.floor((distance % 60000) / 1000)
+      };
+
+      Object.entries(values).forEach(([id, value]) => {
+        const element = $(id);
+
+        if (element) {
+          element.textContent = String(value).padStart(2, "0");
         }
-        guestNamesInput?.focus();
-        return;
-      }
-    }
-
-    // IMPORTANT : ne pas afficher une fausse confirmation
-    // si le backend Google Sheets n'est pas encore configuré.
-    if (!WEDDING.rsvpUrl.trim()) {
-      if (message) {
-        message.textContent =
-          "Le formulaire n'est pas encore connecté. Merci de réessayer plus tard ou de contacter les mariés.";
-      }
-      return;
-    }
-
-    const data = {
-      guestName: name,
-      attendance: responseValue,
-      guestCount: attending ? guestCount : 0,
-      guestNames: attending ? guestNames : ""
-    };
-
-    try {
-      if (submitButton) {
-        submitButton.disabled = true;
-      }
-
-      if (message) {
-        message.textContent = "Envoi de votre réponse…";
-      }
-
-      /*
-       * Google Apps Script peut être appelé en mode no-cors
-       * avec du texte JSON. Le navigateur ne permet alors pas
-       * de lire la réponse du serveur : une requête terminée
-       * ne garantit donc pas, à elle seule, que la ligne a été
-       * enregistrée dans Google Sheets.
-       *
-       * Après le déploiement, testez une réponse et vérifiez
-       * qu'elle apparaît bien dans la feuille Google Sheets.
-       */
-      await fetch(WEDDING.rsvpUrl, {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "text/plain;charset=UTF-8"
-        },
-        body: JSON.stringify(data)
       });
-
-      if (message) {
-        message.textContent =
-          "Votre demande d'envoi a été effectuée. La réception doit être vérifiée dans Google Sheets.";
-      }
-
-      rsvpForm.reset();
-      updateGuestFields();
-
-    } catch (error) {
-      console.error("Erreur lors de l'envoi RSVP :", error);
-
-      if (message) {
-        message.textContent =
-          "Impossible d'envoyer votre réponse pour le moment. Merci de réessayer plus tard.";
-      }
-
-    } finally {
-      if (submitButton) {
-        submitButton.disabled = false;
-      }
     }
-  });
-}
+
+    tick();
+
+    if (!countdown.dataset.timerStarted) {
+      countdown.dataset.timerStarted = "true";
+      window.setInterval(tick, 1000);
+    }
+  }
+
+  updateCountdown();
+
+
+  /* ===================================================
+     CHAMPS DES ACCOMPAGNANTS
+     =================================================== */
+
+  const attendanceSelect = $("attendance");
+  const guestCountWrap = $("guestCountWrap");
+  const guestCountInput = $("guestCount");
+  const guestNamesInput = $("guestNames");
+
+  function updateGuestFields() {
+    if (!attendanceSelect || !guestCountWrap) {
+      return;
+    }
+
+    const attending = attendanceSelect.value === "yes";
+
+    guestCountWrap.classList.toggle("hidden", !attending);
+
+    if (guestCountInput) {
+      guestCountInput.required = attending;
+    }
+
+    if (guestNamesInput) {
+      guestNamesInput.required = attending;
+    }
+  }
+
+  if (attendanceSelect) {
+    attendanceSelect.addEventListener("change", updateGuestFields);
+    updateGuestFields();
+  }
+
+
+  /* ===================================================
+     FORMULAIRE RSVP
+     =================================================== */
+
+  const rsvpForm = $("rsvpForm");
+
+  if (rsvpForm) {
+    rsvpForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const message = $("rsvpMessage");
+      const submitButton = rsvpForm.querySelector(
+        'button[type="submit"]'
+      );
+
+      const guestName = $("guestName");
+      const attendance = $("attendance");
+
+      function showMessage(text) {
+        if (message) {
+          message.textContent = text;
+        }
+      }
+
+      if (!guestName || !attendance) {
+        showMessage(
+          "Une erreur est survenue. Merci de réessayer."
+        );
+        return;
+      }
+
+      const name = guestName.value.trim();
+      const responseValue = attendance.value;
+      const attending = responseValue === "yes";
+
+      if (!name) {
+        showMessage("Merci d'indiquer votre nom complet.");
+        guestName.focus();
+        return;
+      }
+
+      if (responseValue !== "yes" && responseValue !== "no") {
+        showMessage("Merci de choisir une réponse.");
+        attendance.focus();
+        return;
+      }
+
+      let guestCount = 0;
+      let guestNames = "";
+
+      if (attending) {
+        guestCount = Number(guestCountInput?.value || 0);
+        guestNames = guestNamesInput?.value.trim() || "";
+
+        if (
+          !Number.isInteger(guestCount) ||
+          guestCount < 1 ||
+          guestCount > 20
+        ) {
+          showMessage(
+            "Merci d'indiquer un nombre de personnes entre 1 et 20."
+          );
+          guestCountInput?.focus();
+          return;
+        }
+
+        if (!guestNames) {
+          showMessage(
+            "Merci d'indiquer les noms des personnes présentes."
+          );
+          guestNamesInput?.focus();
+          return;
+        }
+      }
+
+      // Le formulaire n'est pas connecté tant que l'URL
+      // du service Google Apps Script n'est pas renseignée.
+      if (!WEDDING.rsvpUrl.trim()) {
+        showMessage(
+          "Le formulaire n'est pas encore connecté. Merci de réessayer plus tard ou de contacter les mariés."
+        );
+        return;
+      }
+
+      const data = {
+        guestName: name,
+        attendance: responseValue,
+        guestCount: attending ? guestCount : 0,
+        guestNames: attending ? guestNames : ""
+      };
+
+      try {
+        if (submitButton) {
+          submitButton.disabled = true;
+        }
+
+        showMessage("Envoi de votre réponse…");
+
+        await fetch(WEDDING.rsvpUrl, {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "text/plain;charset=UTF-8"
+          },
+          body: JSON.stringify(data)
+        });
+
+        showMessage(
+          "La demande d'envoi a été effectuée. Vérifiez son enregistrement dans Google Sheets."
+        );
+
+        rsvpForm.reset();
+        updateGuestFields();
+
+      } catch (error) {
+        console.error("Erreur lors de l'envoi RSVP :", error);
+
+        showMessage(
+          "Impossible d'envoyer votre réponse pour le moment. Merci de réessayer plus tard."
+        );
+
+      } finally {
+        if (submitButton) {
+          submitButton.disabled = false;
+        }
+      }
+    });
+  }
+
+});
 ```
