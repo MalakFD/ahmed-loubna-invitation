@@ -53,7 +53,6 @@ main { min-height: 100vh; position: relative; }
   box-shadow: inset 0 0 100px rgba(114, 44, 59, 0.05);
 }
 
-/* Cadre doré élégant sur les bords de l'écran */
 .envelope-border {
   position: absolute;
   inset: 15px;
@@ -72,7 +71,6 @@ main { min-height: 100vh; position: relative; }
 .bottom-left { bottom: 10px; left: 10px; }
 .bottom-right { bottom: 10px; right: 10px; }
 
-/* Les 4 rabats de l'enveloppe (forme de losange réaliste) */
 .flap {
   position: absolute;
   pointer-events: none;
@@ -124,7 +122,6 @@ main { min-height: 100vh; position: relative; }
   z-index: 2;
 }
 
-/* Contenu positionné proprement sur les rabats */
 .flap-content {
   position: absolute;
   width: 100%;
@@ -133,15 +130,9 @@ main { min-height: 100vh; position: relative; }
   align-items: center;
 }
 
-.top-content {
-  top: max(10vh, 50px);
-}
+.top-content { top: max(10vh, 50px); }
+.bottom-content { bottom: max(8vh, 40px); }
 
-.bottom-content {
-  bottom: max(8vh, 40px);
-}
-
-/* Typographies */
 .script-title {
   font-family: 'Alex Brush', cursive;
   font-size: clamp(34px, 8vw, 54px);
@@ -165,7 +156,6 @@ main { min-height: 100vh; position: relative; }
   margin: 8px 0 0 0;
 }
 
-/* Ligne de séparation dorée avec motif */
 .gold-divider {
   display: flex;
   align-items: center;
@@ -181,7 +171,6 @@ main { min-height: 100vh; position: relative; }
   background: linear-gradient(90deg, transparent, #b28a45, transparent);
 }
 
-/* Sceau en cire réaliste centré au milieu */
 .wax-seal-wrapper {
   position: absolute;
   top: 50%;
@@ -226,32 +215,15 @@ main { min-height: 100vh; position: relative; }
   color: #d6b36d;
 }
 
-/* Animation d'ouverture fluide vers tous les côtés */
-.envelope-screen.opening .top-flap {
-  transform: translateY(-100%);
-  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.envelope-screen.opening .bottom-flap {
-  transform: translateY(100%);
-  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.envelope-screen.opening .left-flap {
-  transform: translateX(-100%);
-  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.envelope-screen.opening .right-flap {
-  transform: translateX(100%);
-  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.envelope-screen.opening .wax-seal-wrapper {
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(1.3);
-  transition: opacity 0.4s ease, transform 0.5s ease;
-}
+.envelope-screen.opening .top-flap { transform: translateY(-100%); transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+.envelope-screen.opening .bottom-flap { transform: translateY(100%); transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+.envelope-screen.opening .left-flap { transform: translateX(-100%); transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+.envelope-screen.opening .right-flap { transform: translateX(100%); transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+.envelope-screen.opening .wax-seal-wrapper { opacity: 0; transform: translate(-50%, -50%) scale(1.3); transition: opacity 0.4s ease, transform 0.5s ease; }
 
 
 /* =========================================================
-   PAGE 2 : INVITATION PRINCIPALE (AESTHETIC & ÉLÉGANTE)
+   PAGE 2 : INVITATION PRINCIPALE
    ========================================================= */
 
 .hidden { display: none !important; }
@@ -270,7 +242,6 @@ main { min-height: 100vh; position: relative; }
   animation: rise 1s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-/* Bordure double dorée esthétique */
 .card-border {
   position: absolute;
   inset: 12px;
@@ -293,7 +264,6 @@ main { min-height: 100vh; position: relative; }
   z-index: 2;
 }
 
-/* Eyebrow & Invitations */
 .eyebrow {
   letter-spacing: 0.28em;
   font-size: 11px;
@@ -322,7 +292,6 @@ main { min-height: 100vh; position: relative; }
   margin: 0;
 }
 
-/* Séparateur élégant */
 .gold-line-divider {
   display: flex;
   align-items: center;
@@ -342,7 +311,6 @@ main { min-height: 100vh; position: relative; }
   background: linear-gradient(90deg, transparent, #b28a45, transparent);
 }
 
-/* Noms des mariés centrés et empilés */
 .couple-names {
   display: flex;
   flex-direction: column;
@@ -356,4 +324,171 @@ main { min-height: 100vh; position: relative; }
   font-size: clamp(52px, 12vw, 85px);
   color: var(--burgundy);
   line-height: 1.1;
-  text-shadow: 0 1px 2px rgba(255,255
+  text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+}
+
+.couple-names .ampersand {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: clamp(28px, 6vw, 44px);
+  color: var(--gold);
+  margin: 4px 0;
+}
+
+.quran-verse-block {
+  margin: 30px 0 20px 0;
+}
+
+.verse-arabic {
+  font-family: 'Amiri', serif;
+  font-size: clamp(26px, 5vw, 36px);
+  color: var(--burgundy);
+  margin: 0 0 8px 0;
+}
+
+.verse-translation {
+  font-style: italic;
+  font-size: clamp(17px, 3.5vw, 21px);
+  color: var(--ink);
+  margin: 0 0 6px 0;
+}
+
+.verse-reference {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: var(--dark-gold);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.details { 
+  margin-top: 40px; 
+  padding: 25px 10px; 
+  border-top: 1px solid rgba(178, 138, 69, 0.35); 
+  border-bottom: 1px solid rgba(178, 138, 69, 0.35); 
+}
+
+.details h2 { 
+  font-size: clamp(22px, 4.5vw, 28px); 
+  font-weight: 600; 
+  color: var(--burgundy); 
+  margin: 10px 0 5px 0; 
+}
+
+.details p { 
+  font-size: clamp(16px, 3.5vw, 19px); 
+  margin: 4px 0; 
+}
+
+.divider {
+  color: var(--gold);
+  margin: 15px 0;
+  font-size: 12px;
+}
+
+.map-link {
+  display: inline-block;
+  padding: 12px 22px;
+  margin-top: 18px;
+  border: 1px solid var(--gold);
+  color: var(--dark-gold);
+  text-decoration: none;
+  letter-spacing: .15em;
+  font-size: 11px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.map-link:hover {
+  background: var(--burgundy);
+  color: white;
+  border-color: var(--burgundy);
+}
+
+.countdown { 
+  display: flex; 
+  justify-content: center; 
+  gap: 12px; 
+  margin-top: 30px; 
+}
+
+.countdown div { 
+  min-width: 65px; 
+  padding: 10px 6px; 
+  background: #f4ead7; 
+  border: 1px solid rgba(178, 138, 69, 0.2);
+}
+
+.countdown strong { 
+  display: block; 
+  color: var(--burgundy); 
+  font-size: clamp(22px, 5vw, 28px); 
+}
+
+.countdown span { 
+  font-size: 11px; 
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--dark-gold);
+}
+
+.rsvp { margin-top: 45px; }
+.rsvp h2 { font-size: clamp(30px, 6vw, 40px); font-weight: 400; color: var(--burgundy); margin: 0; }
+.arabic-heading { font-family: 'Amiri', serif; font-size: 22px; color: var(--gold); margin: 5px 0; }
+.ornament { color: var(--gold); font-size: 12px; margin-bottom: 5px; }
+
+.rsvp form { max-width: 420px; margin: 25px auto 0; text-align: left; }
+.rsvp label { display: block; margin: 16px 0 6px; font-size: 15px; font-weight: 500; color: var(--ink); }
+.rsvp input, .rsvp select, .rsvp textarea {
+  display: block;
+  width: 100%;
+  border: 1px solid #cbb58f;
+  border-radius: 0;
+  background: #fffdf8;
+  color: var(--ink);
+  font: 15px "Cormorant Garamond", Georgia, serif;
+  padding: 12px;
+  outline: none;
+}
+
+.rsvp input:focus, .rsvp select:focus, .rsvp textarea:focus {
+  border-color: var(--burgundy);
+}
+
+.rsvp textarea { resize: vertical; }
+
+.submit-button {
+  width: 100%;
+  margin-top: 25px;
+  padding: 15px;
+  border: 0;
+  background: var(--burgundy);
+  color: white;
+  letter-spacing: .18em;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.submit-button:hover {
+  background: #541422;
+}
+
+.rsvp-message { text-align: center; line-height: 1.6; font-size: 15px; }
+
+footer { margin-top: 50px; color: var(--dark-gold); padding-bottom: 20px; }
+footer p:first-child { font-family: "Amiri", serif; font-size: 22px; margin-bottom: 6px; }
+footer p:last-child { font-size: 14px; letter-spacing: 0.1em; margin-top: 0; }
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 480px) {
+  .invitation { padding: 25px 15px; }
+  .countdown { gap: 6px; }
+  .countdown div { min-width: 0; flex: 1; padding: 8px 2px; }
+}
