@@ -24,7 +24,7 @@ html, body {
 main { min-height: 100vh; position: relative; }
 
 /* =========================================================
-   PAGE 1 : ENVELOPPE PLEIN ÉCRAN
+   PAGE 1 : STYLE ENVELOPPE PLEIN ÉCRAN
    ========================================================= */
 
 .envelope-screen {
@@ -53,6 +53,7 @@ main { min-height: 100vh; position: relative; }
   box-shadow: inset 0 0 100px rgba(114, 44, 59, 0.05);
 }
 
+/* Cadre doré élégant sur les bords de l'écran */
 .envelope-border {
   position: absolute;
   inset: 15px;
@@ -71,6 +72,7 @@ main { min-height: 100vh; position: relative; }
 .bottom-left { bottom: 10px; left: 10px; }
 .bottom-right { bottom: 10px; right: 10px; }
 
+/* Les 4 rabats de l'enveloppe */
 .flap {
   position: absolute;
   pointer-events: none;
@@ -122,6 +124,7 @@ main { min-height: 100vh; position: relative; }
   z-index: 2;
 }
 
+/* Contenu sur les rabats */
 .flap-content {
   position: absolute;
   width: 100%;
@@ -133,6 +136,7 @@ main { min-height: 100vh; position: relative; }
 .top-content { top: max(10vh, 50px); }
 .bottom-content { bottom: max(8vh, 40px); }
 
+/* Typographies */
 .script-title {
   font-family: 'Alex Brush', cursive;
   font-size: clamp(34px, 8vw, 54px);
@@ -156,6 +160,7 @@ main { min-height: 100vh; position: relative; }
   margin: 8px 0 0 0;
 }
 
+/* Ligne de séparation dorée */
 .gold-divider {
   display: flex;
   align-items: center;
@@ -171,6 +176,7 @@ main { min-height: 100vh; position: relative; }
   background: linear-gradient(90deg, transparent, #b28a45, transparent);
 }
 
+/* Sceau en cire centré */
 .wax-seal-wrapper {
   position: absolute;
   top: 50%;
@@ -215,6 +221,7 @@ main { min-height: 100vh; position: relative; }
   color: #d6b36d;
 }
 
+/* Animation d'ouverture */
 .envelope-screen.opening .top-flap { transform: translateY(-100%); transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
 .envelope-screen.opening .bottom-flap { transform: translateY(100%); transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
 .envelope-screen.opening .left-flap { transform: translateX(-100%); transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
@@ -223,29 +230,34 @@ main { min-height: 100vh; position: relative; }
 
 
 /* =========================================================
-   PAGE 2 : CARTE PRINCIPALE (INTEGRATION FLEURS.JPEG)
+   PAGE 2 : INVITATION PRINCIPALE AVEC FOND FLEURI
    ========================================================= */
 
 .hidden { display: none !important; }
 
 .invitation {
-  width: min(94%, 720px);
+  width: min(94%, 700px);
   margin: 30px auto 50px auto;
+  /* Marges intérieures : plus d'espace à gauche pour laisser apparaître le relief des fleurs */
+  padding: clamp(35px, 7vw, 60px) clamp(20px, 4vw, 40px) clamp(35px, 7vw, 60px) clamp(100px, 22vw, 190px);
   position: relative;
   
-  /* Arrière-plan avec fleurs.jpeg uniquement sur ce bloc */
+  /* Intégration de ton image d'inspiration */
   background-image: url('fleurs.jpeg');
   background-size: cover;
   background-position: left center;
   background-repeat: no-repeat;
-  background-color: #f6f3ee;
+  background-color: #f8f6f2;
 
   border: 1px solid #d6c096;
-  box-shadow: 0 20px 50px rgba(80, 50, 20, 0.08);
+  box-shadow: 
+    0 20px 50px rgba(80, 50, 20, 0.08),
+    0 2px 10px rgba(0, 0, 0, 0.03);
   border-radius: 4px;
   animation: rise 1s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+/* Bordure fine dorée à l'intérieur */
 .card-border {
   position: absolute;
   inset: 12px;
@@ -263,17 +275,14 @@ main { min-height: 100vh; position: relative; }
 .card-corner.bottom-l { bottom: 6px; left: 6px; }
 .card-corner.bottom-r { bottom: 6px; right: 6px; }
 
-/* Conteneur de texte décalé sur la droite pour libérer les fleurs à gauche */
 .card-content {
   position: relative;
   z-index: 2;
-  margin-left: auto;
-  width: 72%;
-  padding: 40px 25px 40px 10px;
 }
 
+/* Textes d'invitation */
 .eyebrow {
-  letter-spacing: 0.22em;
+  letter-spacing: 0.28em;
   font-size: 10px;
   font-weight: 600;
   color: var(--dark-gold);
@@ -287,7 +296,7 @@ main { min-height: 100vh; position: relative; }
 
 .arabic-invite {
   font-family: 'Amiri', serif;
-  font-size: clamp(18px, 3.8vw, 26px);
+  font-size: clamp(20px, 4vw, 28px);
   color: var(--burgundy);
   margin: 0 0 4px 0;
   line-height: 1.5;
@@ -295,11 +304,12 @@ main { min-height: 100vh; position: relative; }
 
 .english-invite {
   font-family: 'Great Vibes', 'Alex Brush', cursive;
-  font-size: clamp(24px, 4.8vw, 36px);
+  font-size: clamp(26px, 5vw, 38px);
   color: var(--burgundy);
   margin: 0;
 }
 
+/* Séparateur doré */
 .gold-line-divider {
   display: flex;
   align-items: center;
@@ -307,8 +317,8 @@ main { min-height: 100vh; position: relative; }
   gap: 12px;
   color: var(--gold);
   font-size: 10px;
-  margin: 18px auto;
-  width: 80%;
+  margin: 20px auto;
+  width: 70%;
 }
 
 .gold-line-divider::before,
@@ -319,6 +329,7 @@ main { min-height: 100vh; position: relative; }
   background: linear-gradient(90deg, transparent, #b28a45, transparent);
 }
 
+/* Noms des mariés centrés et empilés */
 .couple-names {
   display: flex;
   flex-direction: column;
@@ -329,7 +340,7 @@ main { min-height: 100vh; position: relative; }
 
 .couple-names .name {
   font-family: 'Great Vibes', 'Alex Brush', cursive;
-  font-size: clamp(44px, 10vw, 72px);
+  font-size: clamp(48px, 11vw, 78px);
   color: var(--burgundy);
   line-height: 1.1;
   text-shadow: 0 1px 2px rgba(255,255,255,0.9);
@@ -338,25 +349,26 @@ main { min-height: 100vh; position: relative; }
 .couple-names .ampersand {
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-style: italic;
-  font-size: clamp(22px, 5vw, 36px);
+  font-size: clamp(26px, 5.5vw, 40px);
   color: var(--gold);
   margin: 2px 0;
 }
 
+/* Verset du Coran */
 .quran-verse-block {
   margin: 25px 0 15px 0;
 }
 
 .verse-arabic {
   font-family: 'Amiri', serif;
-  font-size: clamp(22px, 4vw, 30px);
+  font-size: clamp(24px, 4.5vw, 32px);
   color: var(--burgundy);
   margin: 0 0 6px 0;
 }
 
 .verse-translation {
   font-style: italic;
-  font-size: clamp(15px, 3vw, 18px);
+  font-size: clamp(16px, 3.2vw, 19px);
   color: var(--ink);
   margin: 0 0 4px 0;
 }
@@ -369,6 +381,7 @@ main { min-height: 100vh; position: relative; }
   margin: 0;
 }
 
+/* Sections suivantes (Détails, RSVP, Footer) */
 .details { margin-top: 35px; padding: 25px 10px; border-top: 1px solid #b28a4550; border-bottom: 1px solid #b28a4550; }
 .details h2 { font-size: 24px; font-weight: 500; margin-bottom: 6px; }
 .details p { font-size: 18px; }
@@ -384,15 +397,15 @@ main { min-height: 100vh; position: relative; }
   font-size: 11px;
 }
 
-.countdown { display: flex; justify-content: center; gap: 8px; margin-top: 24px; }
-.countdown div { min-width: 50px; padding: 8px; background: rgba(244, 234, 215, 0.85); }
-.countdown strong { display: block; color: var(--burgundy); font-size: 22px; }
-.countdown span { font-size: 10px; }
+.countdown { display: flex; justify-content: center; gap: 10px; margin-top: 24px; }
+.countdown div { min-width: 55px; padding: 8px; background: rgba(244, 234, 215, 0.85); }
+.countdown strong { display: block; color: var(--burgundy); font-size: 24px; }
+.countdown span { font-size: 11px; }
 
 .rsvp { margin-top: 40px; }
-.rsvp h2 { font-size: 32px; font-weight: 400; color: var(--burgundy); margin-bottom: 0; }
-.rsvp form { max-width: 360px; margin: 20px auto 0; text-align: left; }
-.rsvp label { display: block; margin: 15px 0 5px; font-size: 15px; }
+.rsvp h2 { font-size: 34px; font-weight: 400; color: var(--burgundy); margin-bottom: 0; }
+.rsvp form { max-width: 380px; margin: 20px auto 0; text-align: left; }
+.rsvp label { display: block; margin: 15px 0 5px; font-size: 16px; }
 .rsvp input, .rsvp select, .rsvp textarea {
   display: block;
   width: 100%;
@@ -423,10 +436,8 @@ footer p:first-child { font-family: "Amiri", serif; font-size: 20px; }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Adaptations sur mobile */
-@media (max-width: 600px) {
-  .card-content {
-    width: 68%;
-    padding: 30px 15px 30px 5px;
-  }
+@media (max-width: 480px) {
+  .invitation { padding: 30px 15px 30px 85px; }
+  .countdown { gap: 4px; }
+  .countdown div { min-width: 0; flex: 1; padding: 6px 2px; }
 }
