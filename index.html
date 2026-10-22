@@ -22,8 +22,8 @@
   <!-- PAGE 1 : ENVELOPPE -->
   <section id="envelopeScreen" class="envelope-screen">
     <button id="openEnvelope" class="envelope-button" type="button"
-      aria-label="Ouvrir notre invitation">
-
+  aria-label="Ouvrir notre invitation"
+  onclick="document.getElementById('envelopeScreen').classList.add('opening'); setTimeout(function(){document.getElementById('envelopeScreen').classList.add('hidden'); document.getElementById('invitation').classList.remove('hidden'); window.scrollTo(0,0);}, 1000);">
       <div class="envelope-border" aria-hidden="true">
         <span class="corner-icon top-left">❖</span>
         <span class="corner-icon top-right">❖</span>
