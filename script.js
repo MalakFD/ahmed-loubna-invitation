@@ -1,34 +1,37 @@
-
 const WEDDING = {
   // Format: YYYY-MM-DDTHH:MM:SS
-  date: "",
-  dateLabel: "Date to be announced",
-  timeLabel: "Time to be announced",
-  venueName: "Wedding venue name",
-  venueAddress: "Venue address",
+  date: "2026-11-02T18:00:00",
+  dateLabel: "2 Novembre 2026",
+  timeLabel: "À partir de 18:00",
+  venueName: "Wedding Venue",
+  venueAddress: "Adresse de la salle",
   mapsUrl: "https://maps.google.com/",
-  rsvpUrl: "" // We will connect the private Google Sheet later.
+  rsvpUrl: "" // Le lien Google Sheets sera connecté plus tard
 };
 
 const $ = (id) => document.getElementById(id);
 
+// Initialisation des textes d'information
 $("dateLabel").textContent = WEDDING.dateLabel;
 $("timeLabel").textContent = WEDDING.timeLabel;
 $("venueName").textContent = WEDDING.venueName;
 $("venueAddress").textContent = WEDDING.venueAddress;
 $("mapLink").href = WEDDING.mapsUrl;
 
+// Animation d'ouverture de l'enveloppe au clic sur le sceau
 $("openEnvelope").addEventListener("click", () => {
   const screen = $("envelopeScreen");
   screen.classList.add("opening");
 
+  // Attente de la fin de l'animation des rabats (800ms)
   setTimeout(() => {
     screen.classList.add("hidden");
     $("invitation").classList.remove("hidden");
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, 650);
+  }, 800);
 });
 
+// Compte à rebours
 function updateCountdown() {
   if (!WEDDING.date) return;
 
@@ -57,6 +60,7 @@ function updateCountdown() {
 
 updateCountdown();
 
+// Gestion du formulaire RSVP
 $("attendance").addEventListener("change", (event) => {
   const attending = event.target.value === "yes";
   $("guestCountWrap").classList.toggle("hidden", !attending);
@@ -71,13 +75,13 @@ $("rsvpForm").addEventListener("submit", async (event) => {
   const attending = $("attendance").value === "yes";
 
   if (attending && !$("guestNames").value.trim()) {
-    message.textContent = "Please enter the names of all attending guests.";
+    message.textContent = "Veuillez entrer les noms de tous les invités présents.";
     return;
   }
 
   if (!WEDDING.rsvpUrl) {
     message.textContent =
-      "Thank you! The RSVP form is a preview and is not connected yet. Please check back soon.";
+      "Merci ! Le formulaire d'aperçu n'est pas encore connecté au serveur. Revenez très bientôt.";
     return;
   }
 
@@ -89,19 +93,19 @@ $("rsvpForm").addEventListener("submit", async (event) => {
   };
 
   try {
-    message.textContent = "Sending your RSVP...";
+    message.textContent = "Envoi de votre réponse...";
     const response = await fetch(WEDDING.rsvpUrl, {
       method: "POST",
       body: JSON.stringify(data)
     });
 
-    if (!response.ok) throw new Error("Submission failed");
+    if (!response.ok) throw new Error("Erreur d'envoi");
 
-    message.textContent = "Thank you! Your response has been received.";
+    message.textContent = "Merci ! Votre réponse a bien été enregistrée.";
     $("rsvpForm").reset();
     $("guestCountWrap").classList.add("hidden");
   } catch (error) {
     message.textContent =
-      "We could not send your RSVP. Please contact the hosts directly.";
+      "Impossible d'envoyer votre réponse pour le moment. Veuillez contacter directement les mariés.";
   }
 });
