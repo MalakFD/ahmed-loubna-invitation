@@ -15,20 +15,36 @@
 <body>
   <main>
     <section id="envelopeScreen" class="envelope-screen">
-      <p class="eyebrow">A SPECIAL INVITATION</p>
-      <h1 class="envelope-names">Ahmed <span>&</span> Loubna</h1>
-      <p class="small-arabic" lang="ar" dir="rtl">دعوة زفاف</p>
+  <button id="openEnvelope" class="envelope-button" aria-label="Open wedding invitation">
+    
+    <!-- Coin supérieur décoratif -->
+    <div class="corner-ornament top-ornament">❖</div>
 
-      <button id="openEnvelope" class="envelope-button" aria-label="Open wedding invitation">
-        <span class="envelope">
-          <span class="envelope-flap"></span>
-          <span class="envelope-letter">With love,</span>
-          <span class="wax-seal">A <span>&</span> L</span>
-        </span>
-        <span class="open-text">Touch the seal to open</span>
-      </button>
-      <p class="intro-note">A celebration of love, family and forever.</p>
-    </section>
+    <!-- Rabat supérieur avec le titre -->
+    <div class="flap top-flap">
+      <p class="script-title">A Special Invitation</p>
+      <div class="gold-divider"><span>❖</span></div>
+    </div>
+
+    <!-- Sceau en cire au centre -->
+    <div class="wax-seal-wrapper">
+      <div class="wax-seal">
+        <span class="monogram">A<i>&</i>L</span>
+      </div>
+    </div>
+
+    <!-- Rabat inférieur avec les instructions -->
+    <div class="flap bottom-flap">
+      <p class="script-instruction">Tap the seal to open your invitation</p>
+      <div class="gold-divider"><span>❖</span></div>
+      <p class="arabic-instruction" lang="ar" dir="rtl">اضغطوا على الختم لفتح دعوتكم</p>
+    </div>
+
+    <!-- Coin inférieur décoratif -->
+    <div class="corner-ornament bottom-ornament">❖</div>
+
+  </button>
+</section>
 
     <section id="invitation" class="invitation hidden">
       <div class="ornament">✦ ❈ ✦</div>
