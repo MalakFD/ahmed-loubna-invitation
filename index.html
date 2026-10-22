@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#f8f1e5">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;600&family=Great+Vibes&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
@@ -57,70 +57,92 @@
 
     <!-- PAGE 2 : INVITATION PRINCIPALE -->
     <section id="invitation" class="invitation hidden">
-      <div class="ornament">✦ ❈ ✦</div>
-      <p class="eyebrow">TOGETHER WITH OUR FAMILIES</p>
-      <h1 class="names">Ahmed <span>&</span> Loubna</h1>
-
-      <p class="arabic-heading" lang="ar" dir="rtl">
-        يَسْعَدُنَا دَعْوَتُكُمْ لِحُضُورِ حَفْلِ زَفَافِنَا
-      </p>
-      <p class="english-heading">Joyfully invite you to celebrate their wedding</p>
-
-      <div class="divider">❧</div>
-
-      <p class="verse" lang="ar" dir="rtl">وَخَلَقْنَاكُمْ أَزْوَاجًا</p>
-      <p class="verse-translation">“And We created you in pairs.”</p>
-      <p class="verse-source">SURAH AN-NABA · 78:8</p>
-
-      <div class="details">
-        <p class="eyebrow">PLEASE JOIN US</p>
-        <h2 id="dateLabel">Wedding date to be announced</h2>
-        <p id="timeLabel">Time to be announced</p>
-        <div class="divider">✧</div>
-        <h2 id="venueName">Wedding venue</h2>
-        <p id="venueAddress">Venue address to be announced</p>
-        <a id="mapLink" class="map-link" href="https://maps.google.com/" target="_blank" rel="noopener">VIEW LOCATION ↗</a>
-        <div id="countdown" class="countdown hidden">
-          <div><strong id="days">00</strong><span>Days</span></div>
-          <div><strong id="hours">00</strong><span>Hours</span></div>
-          <div><strong id="minutes">00</strong><span>Minutes</span></div>
-          <div><strong id="seconds">00</strong><span>Seconds</span></div>
-        </div>
+      <!-- Cadre doré décoratif d'arrière-plan -->
+      <div class="card-border">
+        <span class="card-corner top-l">❖</span>
+        <span class="card-corner top-r">❖</span>
+        <span class="card-corner bottom-l">❖</span>
+        <span class="card-corner bottom-r">❖</span>
       </div>
 
-      <section class="rsvp">
-        <div class="ornament">✦</div>
-        <h2>Kindly RSVP</h2>
-        <p class="arabic-heading" lang="ar" dir="rtl">نرجو تأكيد الحضور</p>
-        <p>Please let us know if you can join us.</p>
+      <div class="card-content">
+        <!-- Textes d'en-tête -->
+        <p class="eyebrow">TOGETHER WITH OUR FAMILIES</p>
 
-        <form id="rsvpForm">
-          <label for="guestName">Your full name</label>
-          <input id="guestName" name="guestName" required placeholder="Full name">
+        <div class="invitation-text-group">
+          <p class="arabic-invite" lang="ar" dir="rtl">ندعوكم لحضور حفل زفاف</p>
+          <p class="english-invite">Joyfully invite you to celebrate their wedding</p>
+        </div>
 
-          <label for="attendance">Will you attend?</label>
-          <select id="attendance" name="attendance" required>
-            <option value="">Please select</option>
-            <option value="yes">Joyfully accepts</option>
-            <option value="no">Regretfully declines</option>
-          </select>
+        <div class="gold-line-divider">✦</div>
 
-          <div id="guestCountWrap" class="hidden">
-            <label for="guestCount">Total number attending (including you)</label>
-            <input id="guestCount" name="guestCount" type="number" min="1" max="20" value="1">
-            <label for="guestNames">Names of all attending guests</label>
-            <textarea id="guestNames" name="guestNames" rows="3" placeholder="Write each guest's name"></textarea>
+        <!-- Noms des mariés empilés au centre -->
+        <div class="couple-names">
+          <span class="name">Ahmed</span>
+          <span class="ampersand">&amp;</span>
+          <span class="name">Loubna</span>
+        </div>
+
+        <div class="gold-line-divider">✦</div>
+
+        <!-- Verset du Coran -->
+        <div class="quran-verse-block">
+          <p class="verse-arabic" lang="ar" dir="rtl">وَخَلَقْنَاكُمْ أَزْوَاجًا</p>
+          <p class="verse-translation">“And We created you in pairs.”</p>
+          <p class="verse-reference">SURAH AN-NABA · 78:8</p>
+        </div>
+
+        <!-- Suite du contenu (Détails, RSVP, Footer) -->
+        <div class="details">
+          <p class="eyebrow">PLEASE JOIN US</p>
+          <h2 id="dateLabel">Wedding date to be announced</h2>
+          <p id="timeLabel">Time to be announced</p>
+          <div class="divider">✧</div>
+          <h2 id="venueName">Wedding venue</h2>
+          <p id="venueAddress">Venue address to be announced</p>
+          <a id="mapLink" class="map-link" href="https://maps.google.com/" target="_blank" rel="noopener">VIEW LOCATION ↗</a>
+          <div id="countdown" class="countdown hidden">
+            <div><strong id="days">00</strong><span>Days</span></div>
+            <div><strong id="hours">00</strong><span>Hours</span></div>
+            <div><strong id="minutes">00</strong><span>Minutes</span></div>
+            <div><strong id="seconds">00</strong><span>Seconds</span></div>
           </div>
+        </div>
 
-          <button class="submit-button" type="submit">SEND RSVP</button>
-          <p id="rsvpMessage" class="rsvp-message" role="status"></p>
-        </form>
-      </section>
+        <section class="rsvp">
+          <div class="ornament">✦</div>
+          <h2>Kindly RSVP</h2>
+          <p class="arabic-heading" lang="ar" dir="rtl">نرجو تأكيد الحضور</p>
+          <p>Please let us know if you can join us.</p>
 
-      <footer>
-        <p lang="ar" dir="rtl">بارك الله لهما وبارك عليهما وجمع بينهما في خير</p>
-        <p>With love, Ahmed & Loubna</p>
-      </footer>
+          <form id="rsvpForm">
+            <label for="guestName">Your full name</label>
+            <input id="guestName" name="guestName" required placeholder="Full name">
+
+            <label for="attendance">Will you attend?</label>
+            <select id="attendance" name="attendance" required>
+              <option value="">Please select</option>
+              <option value="yes">Joyfully accepts</option>
+              <option value="no">Regretfully declines</option>
+            </select>
+
+            <div id="guestCountWrap" class="hidden">
+              <label for="guestCount">Total number attending (including you)</label>
+              <input id="guestCount" name="guestCount" type="number" min="1" max="20" value="1">
+              <label for="guestNames">Names of all attending guests</label>
+              <textarea id="guestNames" name="guestNames" rows="3" placeholder="Write each guest's name"></textarea>
+            </div>
+
+            <button class="submit-button" type="submit">SEND RSVP</button>
+            <p id="rsvpMessage" class="rsvp-message" role="status"></p>
+          </form>
+        </section>
+
+        <footer>
+          <p lang="ar" dir="rtl">بارك الله لهما وبارك عليهما وجمع بينهما في خير</p>
+          <p>With love, Ahmed & Loubna</p>
+        </footer>
+      </div>
     </section>
   </main>
 </body>
